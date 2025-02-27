@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
   font-weight: normal;
 }
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
 html {
   height: 100%;
 }
@@ -30,7 +34,6 @@ body > main {
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
-  justify-content: center;
 }
 button {
   cursor: pointer;

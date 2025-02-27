@@ -12,24 +12,19 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-const successColor = {
-  300: '#F0FFF0',
-  500: '#31AD42',
-  700: '#006618',
+const infoColor = {
+  300: '#F0F6FF',
+  500: '#295FCC',
+  700: '#14267A',
   alpha: {
-    100: 'rgba(49, 173, 66, 0.08)',
-    200: 'rgba(49, 173, 66, 0.16)',
-    500: 'rgba(49, 173, 66, 0.32)'
+    100: 'rgba(55, 82, 254, 0.08)',
+    200: 'rgba(55, 82, 254, 0.16)',
+    500: 'rgba(55, 82, 254, 0.32)'
   }
 };
 
 const colors = {
-  theme: {
-    ...successColor,
-    secondary: { 500: '#FEC737' },
-    tertiary: { 500: '#14267A' },
-    quaternary: { 500: '#31A0AF' }
-  },
+  theme: { ...infoColor },
   neutral: {
     100: '#FFFFFF',
     200: '#F7F7F8',
@@ -45,17 +40,17 @@ const colors = {
     }
   },
   semantic: {
-    info: {
-      300: '#F0F6FF',
-      500: '#295FCC',
-      700: '#14267A',
+    info: infoColor,
+    success: {
+      300: '#F0FFF0',
+      500: '#31AD42',
+      700: '#006618',
       alpha: {
-        100: 'rgba(55, 82, 254, 0.08)',
-        200: 'rgba(55, 82, 254, 0.16)',
-        500: 'rgba(55, 82, 254, 0.32)'
+        100: 'rgba(49, 173, 66, 0.08)',
+        200: 'rgba(49, 173, 66, 0.16)',
+        500: 'rgba(49, 173, 66, 0.32)'
       }
     },
-    success: successColor,
     warning: {
       300: '#FEFAEF',
       500: '#FEC737',
@@ -240,9 +235,15 @@ const theme = {
     }
   },
 
+  mediaQueries: {
+    mobile: '@media only screen and (max-width: 45rem})',
+    tablet: '@media only screen and (min-width: 45rem) and (max-width: 77rem)',
+    desktop: '@media only screen and (min-width: 77rem)'
+  },
+
   fonts: {
-    default: `${geistSans.style.fontFamily}` +
-      `${geistMono.style.fontFamily} sans-serif`
+    default: `${geistSans.style.fontFamily.replaceAll(',', '')}` +
+      `${geistMono.style.fontFamily.replaceAll(',', '')} sans-serif`
   },
 
   fontWeights: {
