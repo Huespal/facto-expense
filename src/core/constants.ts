@@ -1,0 +1,1 @@
+export const accessTokenName = 'facto-expense-access-token';
