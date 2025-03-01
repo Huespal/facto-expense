@@ -1,13 +1,11 @@
 import ExpenseTable from '@/components/Expense/Table';
 import Header from '@/components/Header';
 import Section from '@/components/Section';
-import { Expense, ExpenseStatus, ExpenseType } from '@/domain/expense/types';
+import { getExpenses } from '@/domain/expense/api/server';
+import { ExpenseStatus, ExpenseType } from '@/domain/expense/types';
 
 export default async function App() {
-  // TODO: Adapt when API ready.
-  // const expenses = await getExpenses();
-
-  const expenses: Expense[] = [
+  const { data: expenses = [
     {
       id: 'r1',
       name: 'Càmera',
@@ -70,7 +68,7 @@ export default async function App() {
       amount: 150,
       createdAt: 1740664381
     }
-  ];
+  ] } = await getExpenses();
 
   return (
     <>

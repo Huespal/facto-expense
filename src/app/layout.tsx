@@ -1,5 +1,5 @@
+import Providers from '@/app/providers';
 import Footer from '@/components/Footer';
-import ThemeProvider from '@/core/layout/theme-provider';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,10 +14,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main>
-          <ThemeProvider>
+          <Providers>
             {children}
             <Footer />
-          </ThemeProvider>
+          </Providers>
         </main>
       </body>
     </html>

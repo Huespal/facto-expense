@@ -18,14 +18,16 @@ const ExpenseTable = ({ expenses }: ExpenseTableProps) => {
   return (
     <>
       <Table grid={grid}>
-        <TableHeader grid={grid}>
-          <p>Name</p>
-          <p>Status</p>
-          <p>Type</p>
-          <p>Amount</p>
-          <p>Date</p>
-          <div />
-        </TableHeader>
+        {expenses.length > 0 && (
+          <TableHeader grid={grid}>
+            <p>Name</p>
+            <p>Status</p>
+            <p>Type</p>
+            <p>Amount</p>
+            <p>Date</p>
+            <div />
+          </TableHeader>
+        )}
         {expenses.map(expense => <Row key={expense.id} {...expense} />)}
       </Table>
       <Button onClick={() => { router.push('/create') }} >

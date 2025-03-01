@@ -1,5 +1,8 @@
 import { Tenant } from '@/domain/tenant/types';
 
+// The API Url should be received from a environment variable or similar.
+export const APIUrl = 'http://localhost:4000/';
+
 export const accessTokenName = 'facto-expense-access-token';
 export const tenantName = 'facto-expense-tenant';
 

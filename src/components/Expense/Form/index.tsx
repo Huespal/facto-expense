@@ -5,15 +5,19 @@ import Travel from '@/components/Expense/Form/Travel';
 import FieldSelect from '@/components/FieldSelect';
 import FieldText from '@/components/FieldText';
 import { capitalize } from '@/core/helpers';
+import { useCreateExpense } from '@/domain/expense/api/client';
 import {
   ExpenseFormValues, ExpenseType
 } from '@/domain/expense/types';
 import { Form, Formik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const ExpenseForm = () => {
   const router = useRouter();
+
+  const { mutate: create, isSuccess } = useCreateExpense();
 
   const initialValues: ExpenseFormValues = {
     name: '',
@@ -25,16 +29,14 @@ const ExpenseForm = () => {
     createdAt: 1740559381
   }
 
-  const onSubmit = (formValues: ExpenseFormValues) => {
-    // TODO: Call /create endpoint.
-    console.log('Submit ', formValues);
-    router.push('/');
-  }
+  useEffect(() => {
+    if (isSuccess) { router.push('/'); }
+  }, [isSuccess]);
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={onSubmit}
+      onSubmit={create}
     >
       {({ values, setFieldValue, handleChange }) => {
         const isTravel = values.type === ExpenseType.travel;
