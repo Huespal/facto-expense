@@ -242,8 +242,8 @@ const theme = {
   },
 
   fonts: {
-    default: `${geistSans.style.fontFamily.replaceAll(',', '')}` +
-      `${geistMono.style.fontFamily.replaceAll(',', '')} sans-serif`
+    default: `${geistSans.style.fontFamily.replaceAll('\'', '')} ` +
+      `${geistMono.style.fontFamily.replaceAll('\'', '')} sans-serif`
   },
 
   fontWeights: {

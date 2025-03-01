@@ -18,6 +18,8 @@ export interface FieldTextProps {
   type?: InputType;
   placeholder?: string;
   legend?: string;
+  min?: HTMLInputElement['min'];
+  max?: HTMLInputElement['max'];
   error?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
