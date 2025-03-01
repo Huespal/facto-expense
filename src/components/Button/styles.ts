@@ -13,6 +13,7 @@ const ButtonStyled = styled.button(({ theme }) => ({
   justifyContent: 'center',
   borderRadius: theme.radii.default,
   padding: `${theme.space.xs} ${theme.space.default}`,
+  marginRight: theme.space.xs,
   '&:hover': {
     outlineColor: theme.colors.theme[700],
     backgroundColor: theme.colors.theme[700]

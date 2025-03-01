@@ -1,10 +1,10 @@
 'use server'
 
-import { accessTokenName } from '@/core/constants';
+import { accessTokenName, tenantName } from '@/core/constants';
 import { cookies } from 'next/headers';
 
 export async function getAccessToken() {
-  (await cookies()).get(accessTokenName);
+  return (await cookies()).get(accessTokenName);
 }
 
 export async function setAccessToken(token: string) {
@@ -13,4 +13,13 @@ export async function setAccessToken(token: string) {
 
 export async function deleteAccessToken() {
   (await cookies()).delete(accessTokenName);
+}
+
+
+export async function getTenantId() {
+  return (await cookies()).get(tenantName);
+}
+
+export async function setTenantId(tenantId: string) {
+  (await cookies()).set(tenantName, tenantId);
 }

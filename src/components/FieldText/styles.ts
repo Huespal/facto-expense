@@ -4,10 +4,12 @@ interface FieldTextStyledProps {
   $error?: boolean;
 }
 
-const FieldTextStyled = styled.div<FieldTextStyledProps>(
+const FieldTextStyled = styled.fieldset<FieldTextStyledProps>(
   ({ theme, $error }) => ({
-    margin: `0 0 ${theme.space.l} 0`,
+    marginBottom: theme.space.l,
     position: 'relative',
+    display: 'grid',
+    gap: theme.space.xs,
     ...($error && {
       outline: `2px solid ${theme.colors.semantic.error[500]}`,
     })

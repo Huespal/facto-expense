@@ -3,16 +3,17 @@
 import { deleteAccessToken } from '@/app/actions';
 import Button from '@/components/Button';
 import { HeaderStyled } from '@/components/Header/styles';
+import TenantSelect from '@/components/TenantSelect';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
+  tenantId?: string;
   isAuthorized: boolean;
 }
 
-const Header = ({ isAuthorized }: HeaderProps) => {
+const Header = ({ tenantId, isAuthorized }: HeaderProps) => {
   const router = useRouter();
-
-  console.log('isAuthorized: ', isAuthorized);
 
   const logout = () => {
     deleteAccessToken();
@@ -21,8 +22,9 @@ const Header = ({ isAuthorized }: HeaderProps) => {
 
   return (
     <HeaderStyled>
-      <h4>Facto Expense</h4>
+      <h4><Link href="/">Facto Expense</Link></h4>
       {isAuthorized && <Button onClick={logout}>Log out</Button>}
+      {!isAuthorized && <TenantSelect initialValue={tenantId} />}
     </HeaderStyled>
   );
 }
