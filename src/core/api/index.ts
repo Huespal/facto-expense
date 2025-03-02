@@ -3,7 +3,11 @@ import { APIUrl } from '@/core/constants';
 
 type HTTPMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
 
-export const api = async <T,>(url: string, method: HTTPMethod, body?: T) => {
+// Shared helper to connect to api.
+// Configures fetch, requests data and performs basic error handling.
+export const api = async <T,>(
+  url: string, method: HTTPMethod, body?: T, isSSR = false
+) => {
   const tenantId = (await getTenantId())?.value ?? '';
 
   const headers: [string, string][] = [
@@ -20,7 +24,8 @@ export const api = async <T,>(url: string, method: HTTPMethod, body?: T) => {
 
   try {
     const response = await data.json();
-    return response.error ? { error: response } : { data: response };
+    if (!!response.error) return { error: response };
+    return isSSR ? { data: response } : response;
   } catch (error) {
     return { error };
   }

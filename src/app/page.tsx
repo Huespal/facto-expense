@@ -5,6 +5,7 @@ import { getExpenses } from '@/domain/expense/api/server';
 import { ExpenseStatus, ExpenseType } from '@/domain/expense/types';
 
 export default async function App() {
+  // Requests expenses list in SSR to allow and initial fast load.
   const { data: expenses = [
     {
       id: 'r1',
@@ -70,6 +71,7 @@ export default async function App() {
     }
   ] } = await getExpenses();
 
+  // Renders application header and the expenses table or list.
   return (
     <>
       <Header isAuthorized={true} />

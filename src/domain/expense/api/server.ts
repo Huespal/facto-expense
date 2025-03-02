@@ -1,3 +1,5 @@
 import { api } from '@/core/api';
 
-export const getExpenses = async () => await api('expense', 'GET');
+// The method to request expenses list from the API in server side.
+export const getExpenses = async () =>
+  await api('expense', 'GET', undefined, true);

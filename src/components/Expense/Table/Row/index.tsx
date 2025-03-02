@@ -2,8 +2,13 @@ import Button from '@/components/Button';
 import TableCell from '@/components/Table/Cell';
 import TableRow from '@/components/Table/Row';
 import { capitalize } from '@/core/helpers';
+import {
+  useApproveExpense, useRejectExpense
+} from '@/domain/expense/api/client';
 import { Expense, ExpenseStatus } from '@/domain/expense/types';
 
+// The component to render expenses table row.
+// It renders basic expense data and handles approve and reject actions.
 const ExpenseTableRow = ({
   id, name, status, type, amount, createdAt
 }: Expense) => {
@@ -14,15 +19,11 @@ const ExpenseTableRow = ({
   const meaning = isRejected ? 'error' : approvedMeaning;
   const date = new Date(createdAt * 1000).toDateString();
 
-  const approve = () => {
-    // TODO: Call /status endpoint.
-    console.log('Approved ', id);
-  }
+  // Approves an expense through an API call.
+  const { mutate: approve } = useApproveExpense();
 
-  const reject = () => {
-    // TODO: Call /status endpoint.
-    console.log('Rejected ', id);
-  }
+  // Rejects an expense through an API call.
+  const { mutate: reject } = useRejectExpense();
 
   return (
     <TableRow meaning={meaning} >
@@ -33,9 +34,11 @@ const ExpenseTableRow = ({
       <TableCell label="Date">{date}</TableCell>
       <TableCell type="footer">
         {(isRejected || isPending) && (
-          <Button onClick={approve}>Approve</Button>
+          <Button onClick={() => { approve(id) }}>Approve</Button>
         )}
-        {(isApproved || isPending) && <Button onClick={reject}>Reject</Button>}
+        {(isApproved || isPending) && (
+          <Button onClick={() => { reject(id) }}>Reject</Button>
+        )}
       </TableCell>
     </TableRow>
   );
