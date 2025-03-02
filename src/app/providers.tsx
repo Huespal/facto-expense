@@ -2,7 +2,9 @@
 
 import { getQueryClient } from '@/core/helpers/queryClient';
 import ThemeProvider from '@/core/layout/theme-provider';
-import { QueryClientProvider } from '@tanstack/react-query';
+import {
+  dehydrate, HydrationBoundary, QueryClientProvider
+} from '@tanstack/react-query';
 import { ReactNode } from 'react';
 
 interface ProvidersProps {
@@ -15,7 +17,9 @@ export default function Providers({ children }: ProvidersProps) {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        {children}
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          {children}
+        </HydrationBoundary>
       </QueryClientProvider>
     </ThemeProvider>
   )
