@@ -7,18 +7,18 @@ export interface Expense {
   transportation: ExpenseTransportation | null;
   mileage: number | null;
   amount: number | null;
-  createdAt: EpochTimeStamp;
+  createdAt: string;
 }
 
-export type ExpenseFormValues = Omit<Expense, 'status' | 'id'>;
+export type ExpenseFormValues = Omit<Expense, 'id' | 'status' | 'createdAt'>;
 
-interface ExpenseAccommodation {
+export interface ExpenseAccommodation {
   hotelName: string;
   checkInDate: string;
   checkOutDate: string;
 }
 
-interface ExpenseTransportation {
+export interface ExpenseTransportation {
   mode: string;
   route: string;
 }

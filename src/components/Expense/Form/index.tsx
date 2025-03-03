@@ -25,13 +25,12 @@ const ExpenseForm = () => {
     accommodation: null,
     transportation: null,
     mileage: null,
-    amount: null,
-    createdAt: 1740559381
+    amount: null
   }
 
   useEffect(() => {
     if (isSuccess) { router.push('/'); }
-  }, [isSuccess]);
+  }, [router, isSuccess]);
 
   return (
     <Formik
