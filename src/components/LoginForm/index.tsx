@@ -1,30 +1,26 @@
 'use client'
 
-import { setAccessToken } from '@/app/actions';
 import Button from '@/components/Button';
 import FieldText from '@/components/FieldText';
+import { useLogin } from '@/domain/user/client';
+import { Credentials } from '@/domain/user/types';
 import { Form, Formik } from 'formik';
-import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
-  const router = useRouter();
+  const { mutate: login, isError } = useLogin();
 
-  const onSubmit = () => {
-    // TODO: Call /login API.
-    setAccessToken('token');
-    router.push('/');
+  const initialValues: Credentials = {
+    username: '',
+    password: ''
   }
 
   return (
     <Formik
-      initialValues={{
-        username: '',
-        password: ''
-      }}
-      onSubmit={onSubmit}
+      initialValues={initialValues}
+      onSubmit={login}
     >
       {({ values, errors, handleChange }) => {
-        const isError = !!errors.username || !!errors.password;
+        const showError = !!errors.username || !!errors.password || isError;
         return (
           <Form>
             <FieldText
@@ -32,7 +28,7 @@ const LoginForm = () => {
               name="username"
               legend="Username"
               value={values.username}
-              error={isError}
+              error={showError}
               onChange={handleChange}
             />
             <FieldText
@@ -41,7 +37,7 @@ const LoginForm = () => {
               legend="Password"
               type="password"
               value={values.password}
-              error={isError}
+              error={showError}
               onChange={handleChange}
             />
             <Button type="submit">Log in</Button>
