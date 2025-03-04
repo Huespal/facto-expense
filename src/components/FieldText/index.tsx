@@ -31,11 +31,11 @@ const FieldText = ({
   error,
   ...props
 }: FieldTextProps) => (
-  <FieldTextStyled $error={error}>
+  <FieldTextStyled>
     {legend && (
       <label htmlFor={id}>{legend}</label>
     )}
-    <InputStyled>
+    <InputStyled $error={error}>
       <input id={id} type={type} {...props} />
     </InputStyled>
   </FieldTextStyled>

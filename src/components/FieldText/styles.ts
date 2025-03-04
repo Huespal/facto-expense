@@ -1,21 +1,18 @@
 import styled from 'styled-components';
 
-interface FieldTextStyledProps {
-  $error?: boolean;
-}
-
-const FieldTextStyled = styled.fieldset<FieldTextStyledProps>(
-  ({ theme, $error }) => ({
+const FieldTextStyled = styled.fieldset(
+  ({ theme }) => ({
     marginBottom: theme.space.l,
     position: 'relative',
     display: 'grid',
     gap: theme.space.xs,
-    ...($error && {
-      outline: `2px solid ${theme.colors.semantic.error[500]}`,
-    })
   }));
 
-const InputStyled = styled.div(({ theme }) => ({
+interface InputStyledProps {
+  $error?: boolean;
+}
+
+const InputStyled = styled.div<InputStyledProps>(({ theme, $error }) => ({
   display: 'grid',
   alignItems: 'center',
   gridTemplateColumns: '1fr max-content',
@@ -31,6 +28,9 @@ const InputStyled = styled.div(({ theme }) => ({
   fontSize: theme.fontSizes.default,
   color: theme.colors.neutral[700],
   transition: theme.transitions.all,
+  ...($error && {
+    outlineColor: theme.colors.semantic.error[500],
+  }),
   '&::placeholder': {
     color: theme.colors.neutral[500]
   },
