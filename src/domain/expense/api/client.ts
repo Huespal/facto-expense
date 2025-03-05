@@ -1,13 +1,21 @@
 import { api } from '@/core/api';
-import { Expense, ExpenseFormValues } from '@/domain/expense/types';
+import { formatUrlFilters } from '@/core/helpers';
+import {
+  Expense, ExpenseFilters, ExpenseFormValues
+} from '@/domain/expense/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+interface useGetExpensesProps {
+  filters?: ExpenseFilters;
+}
+
 // The hook to request expenses list from the API.
-// It can be pre-initialized within data (coming from SSR).
-export const useGetExpenses = (initial?: Expense[]) => useQuery<Expense[]>({
-  queryKey: ['expenses'],
-  queryFn: () => api(`expense`, 'GET'),
-  initialData: initial
+// It automatically re-fetches on filters change.
+export const useGetExpenses = ({
+  filters
+}: useGetExpensesProps) => useQuery<Expense[]>({
+  queryKey: ['expenses', JSON.stringify(filters)],
+  queryFn: () => api(`expense${formatUrlFilters(filters)}`, 'GET')
 })
 
 // The hook to request API to create an expense.

@@ -3,13 +3,15 @@ import styled, { DefaultTheme } from 'styled-components';
 
 interface FieldSetStyledProps {
   $mb?: keyof DefaultTheme['space'];
+  $inline: boolean;
 }
 
 const FieldSetStyled = styled.fieldset<FieldSetStyledProps>(
-  ({ theme, $mb }) => ({
-    display: 'grid',
+  ({ theme, $mb, $inline }) => ({
+    display: $inline ? 'inline-grid' : 'grid',
     gap: theme.space.xs,
-    marginBottom: $mb ? theme.space[$mb] : undefined
+    marginBottom: $mb ? theme.space[$mb] : undefined,
+    ...($inline && { marginRight: theme.space.l })
   }));
 
 interface FieldSelectInputStyledProps {

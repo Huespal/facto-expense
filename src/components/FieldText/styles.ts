@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-const FieldTextStyled = styled.fieldset(
-  ({ theme }) => ({
+interface FieldTextStyledProps {
+  $inline: boolean;
+}
+
+const FieldTextStyled = styled.fieldset<FieldTextStyledProps>(
+  ({ theme, $inline }) => ({
     marginBottom: theme.space.l,
+    ...($inline && { marginRight: theme.space.l }), 
     position: 'relative',
-    display: 'grid',
+    display: $inline ? 'inline-grid' : 'grid',
     gap: theme.space.xs,
   }));
 

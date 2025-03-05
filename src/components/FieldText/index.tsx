@@ -21,6 +21,7 @@ export interface FieldTextProps {
   min?: HTMLInputElement['min'];
   max?: HTMLInputElement['max'];
   error?: boolean;
+  inline?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -29,9 +30,10 @@ const FieldText = ({
   type = 'text',
   legend,
   error,
+  inline = false,
   ...props
 }: FieldTextProps) => (
-  <FieldTextStyled>
+  <FieldTextStyled $inline={inline}>
     {legend && (
       <label htmlFor={id}>{legend}</label>
     )}
