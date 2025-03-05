@@ -9,6 +9,7 @@ const TableStyled = styled.section<TableStyledProps>(
     '--grid': $grid,
     '--mobile-grid': '1fr max-content',
     background: theme.colors.neutral[200],
+    marginTop: theme.space.l,
     marginBottom: theme.space.l
   })
 );

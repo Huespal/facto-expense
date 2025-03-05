@@ -13,6 +13,7 @@ interface FieldSelectProps<T> {
   value?: string;
   initialText?: string;
   mb?: keyof DefaultTheme['space'];
+  inline?: boolean;
   error?: boolean;
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
@@ -26,10 +27,11 @@ const FieldSelect = <T,>({
   value,
   initialText,
   mb,
+  inline = false,
   error = false,
   onChange
 }: FieldSelectProps<T>) => (
-  <FieldSetStyled $mb={mb}>
+  <FieldSetStyled $mb={mb} $inline={inline}>
     {legend && <label htmlFor={id}>{legend}</label>}
     <FieldSelectInputStyled
       id={id}
@@ -39,7 +41,7 @@ const FieldSelect = <T,>({
       onChange={onChange}
     >
       {(!value && initialText) && (
-        <option value="" selected hidden>{` ${initialText}`}</option>
+        <option value="" hidden>{` ${initialText}`}</option>
       )}
       {options.length > 0 && options.map(children)}
     </FieldSelectInputStyled>

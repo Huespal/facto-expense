@@ -23,6 +23,12 @@ export interface ExpenseTransportation {
   route: string;
 }
 
+export interface ExpenseFilters {
+  status: string;
+  from: string;
+  to: string;
+}
+
 export enum ExpenseType {
   regular = 'regular',
   travel = 'travel',
