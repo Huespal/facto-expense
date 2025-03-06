@@ -1,9 +1,9 @@
 'use client'
 
-import Button from '@/components/Button';
 import Travel from '@/components/Expense/Form/Travel';
-import FieldSelect from '@/components/FieldSelect';
-import FieldText from '@/components/FieldText';
+import Button from '@/components/shared/Button';
+import FieldSelect from '@/components/shared/FieldSelect';
+import FieldText from '@/components/shared/FieldText';
 import { capitalize } from '@/core/helpers';
 import { useCreateExpense } from '@/domain/expense/api/client';
 import {
@@ -14,11 +14,20 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-const ExpenseForm = () => {
+interface ExpenseFormProps {
+  amountSpent: number;
+  budget: number;
+}
+
+// The component to render expense form.
+// Redirects to expenses list after a successful creation.
+const ExpenseForm = ({ amountSpent, budget }: ExpenseFormProps) => {
   const router = useRouter();
 
+  // Prepares the expense create request. It is called on form submit.
   const { mutate: create, isSuccess } = useCreateExpense();
 
+  // Prepares the initial expense create form values.
   const initialValues: ExpenseFormValues = {
     name: '',
     type: ExpenseType.regular,
@@ -28,19 +37,39 @@ const ExpenseForm = () => {
     amount: null
   }
 
+  // Local form validation. Validates the amount does not surpass 
+  // the tenant budget. I decided that mileage Km costs 10 * amount.
+  const validate = (formValues: ExpenseFormValues) => {
+    const errors: { amount?: string } = {};
+    const isMileage = formValues.type === ExpenseType.mileage;
+    const amount = isMileage
+      ? (formValues.mileage ?? 0) * 10
+      : (formValues.amount ?? 0);
+
+    if (amount + amountSpent > budget) {
+      errors.amount = 'Maximum budget reached';
+    }
+
+    return errors;
+  }
+
   useEffect(() => {
+    // Redirects to expenses list after a successful creation.
     if (isSuccess) { router.push('/'); }
   }, [router, isSuccess]);
 
   return (
     <Formik
       initialValues={initialValues}
+      validate={validate}
       onSubmit={create}
     >
-      {({ values, setFieldValue, handleChange }) => {
+      {({ values, errors, setFieldValue, handleChange }) => {
         const isTravel = values.type === ExpenseType.travel;
         const isMileage = values.type === ExpenseType.mileage;
 
+        // Resets form type related values to start fresh
+        // when expense type is modified.
         const resetTypeValues = () => {
           setFieldValue('accommodation', null);
           setFieldValue('transportation', null);
@@ -78,21 +107,30 @@ const ExpenseForm = () => {
               <FieldText
                 id="expense-mileage"
                 name="mileage"
+                type="number"
                 value={values.mileage ?? ''}
                 legend="Mileage (Km)"
+                error={!!errors.amount}
                 onChange={handleChange}
               />
             ) : (
               <FieldText
                 id="expense-amount"
                 name="amount"
+                type="number"
                 value={values.amount ?? ''}
                 legend="Amount"
+                error={!!errors.amount}
                 onChange={handleChange}
               />
             )}
+            {errors.amount && <><p>{errors.amount}</p><br /></>}
             <div>
+              {/* Submit the form on click. 
+                Formik's onSubmit method is called */}
               <Button type="submit">Add</Button>
+              {/* Cancels the modifications. 
+                Redirects to expenses list. */}
               <Link href="/">Cancel</Link>
             </div>
           </Form>
