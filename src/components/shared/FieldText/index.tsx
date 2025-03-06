@@ -1,6 +1,6 @@
 'use client'
 
-import { FieldTextStyled, InputStyled } from '@/components/FieldText/styles';
+import { FieldTextStyled, InputStyled } from '@/components/shared/FieldText/styles';
 import { ChangeEvent } from 'react';
 
 export interface FieldTextLegendProps {
@@ -9,7 +9,7 @@ export interface FieldTextLegendProps {
   text?: string;
 }
 
-type InputType = 'text' | 'password' | 'date';
+type InputType = 'text' | 'number' | 'password' | 'date';
 
 export interface FieldTextProps {
   id: string;
@@ -25,6 +25,8 @@ export interface FieldTextProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
+// The shared component to display an input.
+// It accepts multiples properties to handle different input types.
 const FieldText = ({
   id,
   type = 'text',

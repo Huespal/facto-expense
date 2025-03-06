@@ -1,4 +1,4 @@
-import { TableStyled } from '@/components/Table/styles';
+import { TableStyled } from '@/components/shared/Table/styles';
 import { ReactNode } from 'react';
 
 export interface TableProps {
@@ -6,6 +6,7 @@ export interface TableProps {
   children: ReactNode;
 }
 
+// The shared component to display a responsive table.
 const Table = ({
   grid, children
 }: TableProps) => <TableStyled $grid={grid}>{children}</TableStyled>;

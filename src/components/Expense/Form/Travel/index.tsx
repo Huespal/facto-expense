@@ -1,5 +1,5 @@
-import FieldSelect from '@/components/FieldSelect';
-import FieldText from '@/components/FieldText';
+import FieldSelect from '@/components/shared/FieldSelect';
+import FieldText from '@/components/shared/FieldText';
 import { capitalize } from '@/core/helpers';
 import {
   ExpenseFormValues, ExpenseTravelType
@@ -7,8 +7,14 @@ import {
 import { useFormikContext } from 'formik';
 import { useState } from 'react';
 
+// The component to render the expense form's travel related inputs.
+// - Expense Travel type (or expense sub-type)
+// - Hotel name (for 'accommodation' expense type)
+// - Check in date (for 'accommodation' expense type)
+// - Check out date (for 'accommodation' expense type)
+// - Mode (for 'transportation' expense type)
+// - Route (for 'transportation' expense type)
 const ExpenseFormTravel = () => {
-
   const {
     values, handleChange, setFieldValue
   } = useFormikContext<ExpenseFormValues>();

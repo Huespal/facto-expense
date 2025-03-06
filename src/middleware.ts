@@ -25,6 +25,7 @@ const authentication = (req: NextRequest) => {
   }
 };
 
+// NextJS middleware. It handles authentication redirects.
 export function middleware(req: NextRequest) {
   return authentication(req);
 }

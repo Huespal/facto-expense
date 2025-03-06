@@ -1,10 +1,12 @@
 import { getTenantId } from '@/app/actions';
 import Header from '@/components/Header';
 import LoginForm from '@/components/LoginForm';
-import Section from '@/components/Section';
+import Section from '@/components/shared/Section';
 import { tenants } from '@/core/constants';
 import Image from 'next/image';
 
+// The login page.
+// It is accessible by everyone.
 export default async function Login() {
   const tenantId = (await getTenantId())?.value;
   const tenant = tenants.find(tenant => tenant.id === tenantId);

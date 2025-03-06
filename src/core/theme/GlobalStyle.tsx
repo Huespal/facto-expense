@@ -2,6 +2,7 @@
 
 import { createGlobalStyle } from 'styled-components';
 
+// Application global styles.
 const GlobalStyle = createGlobalStyle`
 * {
   margin: 0;

@@ -1,6 +1,6 @@
 import {
   FieldSelectInputStyled, FieldSetStyled
-} from '@/components/FieldSelect/styles';
+} from '@/components/shared/FieldSelect/styles';
 import { ChangeEvent, ReactElement } from 'react';
 import { DefaultTheme } from 'styled-components';
 
@@ -18,6 +18,8 @@ interface FieldSelectProps<T> {
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
+// The shared component to display a select.
+// It accepts multiples properties to properly handle its behaviour.
 const FieldSelect = <T,>({
   id,
   name,
