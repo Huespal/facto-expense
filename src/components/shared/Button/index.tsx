@@ -1,6 +1,6 @@
 'use client'
 
-import { ButtonStyled } from '@/components/Button/styles';
+import { ButtonStyled } from '@/components/shared/Button/styles';
 import { ReactNode } from 'react';
 
 interface ButtonProps {
@@ -9,6 +9,7 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
+// The shared component to display a button.
 const Button = ({
   type = 'button',
   children,

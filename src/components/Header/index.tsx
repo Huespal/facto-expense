@@ -1,8 +1,8 @@
 'use client'
 
 import { deleteAccessToken } from '@/app/actions';
-import Button from '@/components/Button';
 import { HeaderStyled } from '@/components/Header/styles';
+import Button from '@/components/shared/Button';
 import TenantSelect from '@/components/TenantSelect';
 import { tenants } from '@/core/constants';
 import { useQueryClient } from '@tanstack/react-query';
@@ -10,11 +10,16 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
-  tenantId?: string;
   isAuthorized: boolean;
+  tenantId?: string;
+  username?: string;
 }
 
-const Header = ({ tenantId, isAuthorized }: HeaderProps) => {
+// The component to display a page header.
+// It renders different components depending on authentication.
+// - User authenticated: Displays username and log out button.
+// - User not authenticated: Displays the tenant selector.
+const Header = ({ isAuthorized, tenantId, username = '' }: HeaderProps) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const tenant = tenants.find(tenant => tenant.id === tenantId);
@@ -28,7 +33,12 @@ const Header = ({ tenantId, isAuthorized }: HeaderProps) => {
   return (
     <HeaderStyled>
       <h4><Link href="/">Facto Expense - {tenant?.name}</Link></h4>
-      {isAuthorized && <Button onClick={logout}>Log out</Button>}
+      {isAuthorized && (
+        <div>
+          {`${username} `}
+          <Button onClick={logout}>Log out</Button>
+        </div>
+      )}
       {!isAuthorized && <TenantSelect initialValue={tenantId} />}
     </HeaderStyled>
   );

@@ -11,6 +11,9 @@ interface ProvidersProps {
   children: ReactNode;
 }
 
+// The application proviers including:
+// - Styled Components theme provider
+// - React Query provider within hydration for SSR
 export default function Providers({ children }: ProvidersProps) {
   const queryClient = getQueryClient();
 

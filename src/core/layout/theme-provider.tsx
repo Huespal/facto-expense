@@ -10,6 +10,10 @@ interface ProvidersProps {
   children: ReactNode;
 }
 
+// Theme related Providers including:
+// - Styled Components theme provider
+// - Styled Components registry
+// - Styled Components global styles
 const Providers = ({ children }: ProvidersProps) => (
   <ThemeProvider theme={baseTheme}>
     <StyledComponentsRegistry>

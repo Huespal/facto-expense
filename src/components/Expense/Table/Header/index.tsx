@@ -1,4 +1,4 @@
-import TableHeader from '@/components/Table/Header';
+import TableHeader from '@/components/shared/Table/Header';
 
 interface ExpenseTableHeaderProps {
   grid: string;

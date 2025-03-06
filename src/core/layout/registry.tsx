@@ -8,6 +8,7 @@ interface StyledComponentsRegistryProps {
   children: ReactNode;
 }
 
+// Styled Components registry to handle SSR styles.
 const StyledComponentsRegistry = ({
   children
 }: StyledComponentsRegistryProps) => {

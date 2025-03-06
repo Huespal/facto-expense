@@ -1,6 +1,6 @@
 'use client'
 
-import { SectionStyled } from '@/components/Section/styles';
+import { SectionStyled } from '@/components/shared/Section/styles';
 import { ReactNode } from 'react';
 import { DefaultTheme } from 'styled-components';
 
@@ -9,6 +9,7 @@ interface SectionProps {
   px?: keyof DefaultTheme['space'];
 }
 
+// The shared component to display a page section.
 const Section = ({ children, px }: SectionProps) => (
   <SectionStyled $px={px}>{children}</SectionStyled>
 )

@@ -1,4 +1,4 @@
-import TableCell from '@/components/Table/Cell';
+import TableCell from '@/components/shared/Table/Cell';
 import { capitalize } from '@/core/helpers';
 import {
   ExpenseAccommodation, ExpenseTransportation, ExpenseType

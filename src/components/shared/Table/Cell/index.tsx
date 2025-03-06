@@ -1,4 +1,4 @@
-import { CellType, TableCellStyled } from '@/components/Table/Cell/styles';
+import { CellType, TableCellStyled } from '@/components/shared/Table/Cell/styles';
 import { ReactNode } from 'react';
 
 export interface TableCellProps {
@@ -7,6 +7,7 @@ export interface TableCellProps {
   children?: ReactNode;
 }
 
+// The shared component to display a responsive table row's cell.
 const TableCell = ({
   type,
   label,

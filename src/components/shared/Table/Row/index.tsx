@@ -1,4 +1,4 @@
-import { TableRowStyled } from '@/components/Table/Row/styles';
+import { TableRowStyled } from '@/components/shared/Table/Row/styles';
 import { ReactNode } from 'react';
 
 export type TableRowProps = {
@@ -6,6 +6,7 @@ export type TableRowProps = {
   meaning?: 'success' | 'error';
 };
 
+// The shared component to display a responsive table row.
 const TableRow = ({
   children,
   meaning

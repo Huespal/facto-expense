@@ -1,10 +1,10 @@
 'use client'
 
-import Button from '@/components/Button';
 import Filter from '@/components/Expense/Filter';
 import Header from '@/components/Expense/Table/Header';
 import Row from '@/components/Expense/Table/Row';
-import Table from '@/components/Table';
+import Button from '@/components/shared/Button';
+import Table from '@/components/shared/Table';
 import { useGetExpenses } from '@/domain/expense/api/client';
 import { Expense } from '@/domain/expense/types';
 import { useRouter } from 'next/navigation';
@@ -12,13 +12,17 @@ import { useState } from 'react';
 
 interface ExpenseTableProps {
   expenses: Expense[];
+  withModeration?: boolean;
 }
 
 // The component to render expenses list within a table.
 // It also allows to redirect to expense create form and filter results.
-const ExpenseTable = ({ expenses: initialExpenses }: ExpenseTableProps) => {
+const ExpenseTable = ({
+  expenses: initialExpenses,
+  withModeration = false
+}: ExpenseTableProps) => {
   const router = useRouter();
-  const grid = '1fr 1fr 1fr 1fr .5fr 1fr';
+  const grid = `1fr 1fr 1fr 1fr .5fr${withModeration ? ' 1fr' : ''}`;
 
   const [filters, setFilters] = useState({
     status: '', from: '', to: ''
@@ -39,7 +43,13 @@ const ExpenseTable = ({ expenses: initialExpenses }: ExpenseTableProps) => {
       {expenses.length > 0 ? (
         <Table grid={grid}>
           {expenses.length > 0 && <Header grid={grid} />}
-          {expenses.map(expense => <Row key={expense.id} {...expense} />)}
+          {expenses.map(expense => (
+            <Row
+              key={expense.id}
+              withModeration={withModeration}
+              {...expense}
+            />
+          ))}
         </Table>
       ) : <><br /><div>There are no expenses</div><br /></>}
       <Button onClick={() => { router.push('/create') }} >

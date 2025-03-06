@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: "A multi-tenant expense management system",
 };
 
+// The application root layout.
+// It wraps the main content within the
+// application Providers and renders the footer.
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

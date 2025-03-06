@@ -126,6 +126,7 @@ const shadows = {
   focusAlpha: `0 0 0 4px ${colors.semantic.info.alpha[500]}`
 };
 
+// Application base theme.
 const theme = {
   name: 'Base',
 

@@ -1,6 +1,6 @@
-import Button from '@/components/Button';
-import FieldSelect from '@/components/FieldSelect';
-import FieldText from '@/components/FieldText';
+import Button from '@/components/shared/Button';
+import FieldSelect from '@/components/shared/FieldSelect';
+import FieldText from '@/components/shared/FieldText';
 import { capitalize } from '@/core/helpers';
 import { ExpenseFilters, ExpenseStatus } from '@/domain/expense/types';
 import { useEffect, useState } from 'react';
@@ -24,7 +24,7 @@ const ExpenseFilter = ({ onChange }: ExpenseFilterProps) => {
 
   useEffect(() => {
     onChange({ status, from, to });
-  }, [status, from, to]);
+  }, [onChange, status, from, to]);
 
   return (
     <>

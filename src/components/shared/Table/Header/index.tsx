@@ -1,4 +1,4 @@
-import { TableHeaderStyled } from '@/components/Table/Header/styles';
+import { TableHeaderStyled } from '@/components/shared/Table/Header/styles';
 import { ReactNode } from 'react';
 
 export interface TableHeaderProps {
@@ -6,6 +6,7 @@ export interface TableHeaderProps {
   grid?: string;
 }
 
+// The shared component to display a responsive table header.
 const TableHeader = ({ children, grid }: TableHeaderProps) => (
   <TableHeaderStyled $grid={grid}>{children}</TableHeaderStyled>
 );
