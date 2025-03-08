@@ -1,5 +1,4 @@
 import Providers from '@/app/providers';
-import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -17,10 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main>
-          <Providers>
-            {children}
-            <Footer />
-          </Providers>
+          <Providers>{children}</Providers>
         </main>
       </body>
     </html>

@@ -69,7 +69,7 @@ Tenant ID: 3
 - admin-excursionistes
 - employee-excursionistes
 
-'admin users have an 'admin' role. 'employee' users an 'employee' role.
+admin users have an 'admin' role. Employee users an 'employee' role.
 Users are seeds for the database as there is no user creation form in the application.
 
 ### Tech Stack
@@ -161,6 +161,7 @@ To develop the Facto Expense application, work has been separated in different t
 
 Testing and user roles restrictions had been added along the tasks.
 Components are done in a way that are ready to adapt to theme modifications, so multiple theming is handled.
+There's currently a base theme, based on light colours and a dark theme based on dark colours.
 
 
 ## Final thoughts

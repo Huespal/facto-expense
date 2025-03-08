@@ -7,7 +7,7 @@ interface FieldTextStyledProps {
 const FieldTextStyled = styled.fieldset<FieldTextStyledProps>(
   ({ theme, $inline }) => ({
     marginBottom: theme.space.l,
-    ...($inline && { marginRight: theme.space.l }), 
+    ...($inline && { marginRight: theme.space.l }),
     position: 'relative',
     display: $inline ? 'inline-grid' : 'grid',
     gap: theme.space.xs,
@@ -31,7 +31,10 @@ const InputStyled = styled.div<InputStyledProps>(({ theme, $error }) => ({
   background: theme.colors.neutral[200],
   backgroundColor: theme.colors.neutral[100],
   fontSize: theme.fontSizes.default,
-  color: theme.colors.neutral[700],
+  input: {
+    color: theme.colors.neutral[700],
+    colorScheme: theme.name.toLowerCase()
+  },
   transition: theme.transitions.all,
   ...($error && {
     outlineColor: theme.colors.semantic.error[500],
