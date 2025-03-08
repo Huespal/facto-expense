@@ -69,7 +69,7 @@ Tenant ID: 3
 - admin-excursionistes
 - employee-excursionistes
 
-'admin users have an 'admin' role. 'employee' users an 'employee' role.
+admin users have an 'admin' role. Employee users an 'employee' role.
 Users are seeds for the database as there is no user creation form in the application.
 
 ### Tech Stack
