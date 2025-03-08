@@ -5,7 +5,7 @@ const FooterStyled = styled.footer(({
 }) => ({
   display: 'flex',
   backgroundColor: theme.colors.neutral[200],
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   alignItems: 'center',
   padding: theme.space.default
 }));

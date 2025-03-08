@@ -161,6 +161,7 @@ To develop the Facto Expense application, work has been separated in different t
 
 Testing and user roles restrictions had been added along the tasks.
 Components are done in a way that are ready to adapt to theme modifications, so multiple theming is handled.
+There's currently a base theme, based on light colours and a dark theme based on dark colours.
 
 
 ## Final thoughts
