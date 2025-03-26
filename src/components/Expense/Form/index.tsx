@@ -38,7 +38,7 @@ const ExpenseForm = ({ amountSpent, budget }: ExpenseFormProps) => {
   }
 
   // Local form validation. Validates the amount does not surpass 
-  // the tenant budget. I decided that mileage Km costs 10 * amount.
+  // the tenant budget. Decided that mileage Km costs 10 * amount.
   const validate = (formValues: ExpenseFormValues) => {
     const errors: { amount?: string } = {};
     const isMileage = formValues.type === ExpenseType.mileage;

@@ -1,4 +1,6 @@
-import { CellType, TableCellStyled } from '@/components/shared/Table/Cell/styles';
+import {
+  CellType, TableCellStyled
+} from '@/components/shared/Table/Cell/styles';
 import { ReactNode } from 'react';
 
 export interface TableCellProps {
