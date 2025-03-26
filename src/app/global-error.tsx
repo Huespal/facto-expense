@@ -1,6 +1,6 @@
 'use client';
 
-// The application flobal error. It is shown when an unexpected error occurs.
+// The application global error. It is shown when an unexpected error occurs.
 const Error = () => (
   <>
     <h2>Error</h2>

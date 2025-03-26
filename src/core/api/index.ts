@@ -44,8 +44,6 @@ export const api = async <T,>(
 
     if (isUnauthorized && !isPublicEndpoint(url)) {
       if (isSSR) {
-        // deleteAccessToken();
-        // redirect('/login');
         return { data: undefined, error: response.error };
       } else {
         await logout();

@@ -26,7 +26,7 @@ export default async function App() {
       <Header
         isAuthorized={true}
         tenantId={tenantId}
-        username={user.username}
+        username={user?.username}
       />
       <Section px="xl">
         <ExpenseTable expenses={expenses} withModeration={isAdmin} />
